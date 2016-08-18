@@ -4,13 +4,13 @@
     - nuget
     
   before_build:
-    - nuget restore Ghpr.NUnit/Ghpr.NUnit.sln
+    - nuget restore Ghpr.MSTest/Ghpr.MSTest.sln
 
   build_script: 
-    - msbuild Ghpr.NUnit/Ghpr.NUnit.sln /p:Configuration=Release /t:Rebuild
+    - msbuild Ghpr.MSTest/Ghpr.MSTest.sln /p:Configuration=Release /t:Rebuild
 
   after_build:
-    - nuget pack "Ghpr.NUnit/Ghpr.NUnit.csproj" -Prop Configuration=Release
+    - nuget pack "Ghpr.MSTest/Ghpr.MSTest.csproj" -Prop Configuration=Release
 
   artifacts:
     - path: '*.nupkg'
@@ -38,10 +38,10 @@
     - nuget
     
   before_build:
-    - nuget restore Ghpr.NUnit/Ghpr.NUnit.sln
+    - nuget restore Ghpr.MSTest/Ghpr.MSTest.sln
 
   build_script: 
-    - msbuild Ghpr.NUnit/Ghpr.NUnit.sln /p:Configuration=Release /t:Rebuild
+    - msbuild Ghpr.MSTest/Ghpr.MSTest.sln /p:Configuration=Release /t:Rebuild
 
   test:
     assemblies:
