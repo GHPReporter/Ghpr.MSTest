@@ -11,8 +11,6 @@ namespace Ghpr.MSTest
 {
     public class TrxReader
     {
-        //private static string _outputFolder;
-        //private static string _fileName;
         private static string _fullPath;
         private readonly XmlDocument _xml;
 
@@ -34,8 +32,8 @@ namespace Ghpr.MSTest
 
         public string GetRunGuid()
         {
-            var tr = _xml.GetElementsByTagName("TestRun")[0];
-            var id = tr.Attributes?["id"].Value ?? Guid.NewGuid().ToString();
+            var tr = _xml.GetElementsByTagName("testrun")[0];
+            var id = tr?.Attributes?["id"].Value ?? Guid.NewGuid().ToString();
             return id;
         }
 
@@ -43,7 +41,7 @@ namespace Ghpr.MSTest
         {
             var testRuns = new List<ITestRun>();
 
-            var utrs = _xml.GetElementsByTagName("UnitTestResult");
+            var utrs = _xml.GetElementsByTagName("unittestresult");
             
             foreach (XmlNode utr in utrs)
             {
@@ -58,7 +56,7 @@ namespace Ghpr.MSTest
                 };
                 var testName = utr.Attributes?["testName"].Value;
                 var testFullName = _xml.GetElementById(testGuid)?
-                    .GetElementsByTagName("TestMethod")[0]
+                    .GetElementsByTagName("testmethod")[0]
                     .Attributes?["className"]
                     .Value
                     .Split(',')[0] + "." + testName;
