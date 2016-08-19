@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml;
 using Ghpr.Core;
 using Ghpr.Core.Common;
@@ -11,29 +10,37 @@ namespace Ghpr.MSTest
 {
     public class TrxReader
     {
+        private const string Ns = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
+
         private static string _fullPath;
         private readonly XmlDocument _xml;
+        private XmlNamespaceManager _nsm;
 
         public TrxReader(string fullPath)
         {
             _fullPath = fullPath;
             _xml = new XmlDocument();
-        }
 
-        public TrxReader LoadResult()
-        {
             if (!File.Exists(_fullPath))
             {
                 throw new FileNotFoundException("Can't find .trx file!", _fullPath);
             }
             _xml.Load(_fullPath);
-            return this;
-        }
 
+            _nsm = new XmlNamespaceManager(_xml.NameTable);
+            _nsm.AddNamespace("ns", Ns);
+        }
+        
         public string GetRunGuid()
         {
-            var tr = _xml.GetElementsByTagName("testrun")[0];
+            var tr = _xml.SelectSingleNode("//ns:TestRun", _nsm);
+
+            Console.WriteLine("tr: " + (tr != null));
+
             var id = tr?.Attributes?["id"].Value ?? Guid.NewGuid().ToString();
+
+            Console.WriteLine("id = " + id);
+
             return id;
         }
 
@@ -41,13 +48,19 @@ namespace Ghpr.MSTest
         {
             var testRuns = new List<ITestRun>();
 
-            var utrs = _xml.GetElementsByTagName("unittestresult");
-            
+            var utrs = _xml.SelectNodes("//ns:UnitTestResult", _nsm);
+
+            if (utrs == null)
+            {
+                Console.WriteLine("No tests found!");
+                return testRuns;
+            }
+
             foreach (XmlNode utr in utrs)
             {
                 var start = DateTime.Parse(utr.Attributes?["startTime"].Value);
                 var finish = DateTime.Parse(utr.Attributes?["endTime"].Value);
-                var testGuid = utr.Attributes?["id"].Value ?? Guid.NewGuid().ToString();
+                var testGuid = utr.Attributes?["id"]?.Value ?? Guid.NewGuid().ToString();
                 var testInfo = new ItemInfo
                 {
                     Start = start,

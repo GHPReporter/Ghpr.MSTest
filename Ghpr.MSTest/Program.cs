@@ -12,7 +12,6 @@ namespace Ghpr.MSTest
             var path = args[0];
             var reporter = new Reporter();
             var reader = new TrxReader(path);
-
             reader.GenerateReport(reporter);
 
         }
