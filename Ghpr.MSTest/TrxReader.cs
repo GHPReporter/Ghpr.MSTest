@@ -54,6 +54,7 @@ namespace Ghpr.MSTest
             {
                 var start = DateTime.Parse(utr.Attributes?["startTime"].Value);
                 var finish = DateTime.Parse(utr.Attributes?["endTime"].Value);
+                var duration = utr.Attributes?["duration"].Value;
                 var testGuid = utr.Attributes?["testId"]?.Value ?? Guid.NewGuid().ToString();
                 var testInfo = new ItemInfo
                 {
@@ -77,7 +78,8 @@ namespace Ghpr.MSTest
                     Result = result,
                     Output = output,
                     TestMessage = msg,
-                    TestStackTrace = sTrace
+                    TestStackTrace = sTrace,
+                    TestDuration = TimeSpan.Parse(duration).TotalSeconds
                 };
                 
                 testRuns.Add(testRun);
