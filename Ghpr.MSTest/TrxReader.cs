@@ -11,22 +11,17 @@ namespace Ghpr.MSTest
     public class TrxReader
     {
         private const string Ns = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
-
-        private static string _fullPath;
         private readonly XmlDocument _xml;
-        private XmlNamespaceManager _nsm;
+        private readonly XmlNamespaceManager _nsm;
 
         public TrxReader(string fullPath)
         {
-            _fullPath = fullPath;
-            _xml = new XmlDocument();
-
-            if (!File.Exists(_fullPath))
+            if (!File.Exists(fullPath))
             {
-                throw new FileNotFoundException("Can't find .trx file!", _fullPath);
+                throw new FileNotFoundException("Can't find .trx file!", fullPath);
             }
-            _xml.Load(_fullPath);
-
+            _xml = new XmlDocument();
+            _xml.Load(fullPath);
             _nsm = new XmlNamespaceManager(_xml.NameTable);
             _nsm.AddNamespace("ns", Ns);
         }
@@ -34,13 +29,7 @@ namespace Ghpr.MSTest
         public string GetRunGuid()
         {
             var tr = _xml.SelectSingleNode("//ns:TestRun", _nsm);
-
-            Console.WriteLine("tr: " + (tr != null));
-
             var id = tr?.Attributes?["id"].Value ?? Guid.NewGuid().ToString();
-
-            Console.WriteLine("id = " + id);
-
             return id;
         }
 
