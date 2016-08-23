@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Ghpr.Core;
 
 namespace Ghpr.MSTest
 {
@@ -10,10 +9,7 @@ namespace Ghpr.MSTest
         {
             if (!args.Any()) throw new Exception("No path specified!");
             var path = args[0];
-            var reporter = new Reporter();
-            var reader = new TrxReader(path);
-            reader.GenerateReport(reporter);
-
+            ReportGenerator.GenerateReport(path);
         }
     }
 }
