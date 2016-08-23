@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ghpr.Core;
 
 namespace Ghpr.MSTest
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            if (!args.Any()) throw new Exception("No path specified!");
+            var path = args[0];
+            var reporter = new Reporter();
+            var reader = new TrxReader(path);
+            reader.GenerateReport(reporter);
+
         }
     }
 }
