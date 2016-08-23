@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml;
 using Ghpr.Core;
@@ -11,65 +10,50 @@ namespace Ghpr.MSTest
 {
     public class TrxReader
     {
-        private const string Ns = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
         private readonly XmlDocument _xml;
-        private readonly XmlNamespaceManager _nsm;
 
         public TrxReader(string fullPath)
         {
-            if (!File.Exists(fullPath))
-            {
-                throw new FileNotFoundException("Can't find .trx file!", fullPath);
-            }
-            _xml = new XmlDocument();
-            _xml.Load(fullPath);
-            _nsm = new XmlNamespaceManager(_xml.NameTable);
-            _nsm.AddNamespace("ns", Ns);
+            _xml = XmlExtensions.GetDoc(fullPath);
         }
         
         public string GetRunGuid()
         {
-            var tr = _xml.SelectSingleNode(".//ns:TestRun", _nsm);
-            var id = tr?.Attributes?["id"].Value ?? Guid.NewGuid().ToString();
-            return id;
+            return _xml.GetNode("TestRun").GetAttrVal("id");
         }
 
         public List<ITestRun> GetTestRuns()
         {
             var testRuns = new List<ITestRun>();
-
-            var utrs = _xml.SelectNodes(".//ns:UnitTestResult", _nsm)?.Cast<XmlNode>().ToList();
+            var utrs = _xml.GetNodesList("UnitTestResult");
+            var uts = _xml.GetNode("TestDefinitions")?.GetNodesList("UnitTest");
 
             if (utrs == null)
             {
                 Console.WriteLine("No tests found!");
                 return testRuns;
             }
-
-            var uts = _xml.SelectSingleNode(".//ns:TestDefinitions", _nsm)?
-                .SelectNodes(".//ns:UnitTest", _nsm)?
-                .Cast<XmlNode>().ToList();
-
+            
             foreach (var utr in utrs)
             {
-                var start = DateTime.Parse(utr.Attributes?["startTime"].Value);
-                var finish = DateTime.Parse(utr.Attributes?["endTime"].Value);
-                var duration = utr.Attributes?["duration"].Value;
-                var testGuid = utr.Attributes?["testId"]?.Value ?? Guid.NewGuid().ToString();
+                var start = DateTime.Parse(utr.GetAttrVal("startTime"));
+                var finish = DateTime.Parse(utr.GetAttrVal("endTime"));
+                var duration = utr.GetAttrVal("duration");
+                var testGuid = utr.GetAttrVal("testId") ?? Guid.NewGuid().ToString();
                 var testInfo = new ItemInfo
                 {
                     Start = start,
                     Finish = finish,
                     Guid = Guid.Parse(testGuid)
                 };
-                var testName = utr.Attributes?["testName"].Value;
-                var ut = uts?.FirstOrDefault(node => (node.Attributes?["id"]?.Value ?? "").Equals(testGuid));
-                var tm = ut?.SelectSingleNode(".//ns:TestMethod", _nsm);
-                var testFullName = (tm?.Attributes?["className"].Value ?? "").Split(',')[0] + "." + testName;
-                var result = utr.Attributes?["outcome"].Value;
-                var output = utr.SelectSingleNode(".//ns:Output", _nsm)?.SelectSingleNode(".//ns:StdOut", _nsm)?.InnerText ?? "";
-                var msg = utr.SelectSingleNode(".//ns:Output", _nsm)?.SelectSingleNode(".//ns:ErrorInfo", _nsm)?.SelectSingleNode(".//ns:Message", _nsm)?.InnerText ?? "";
-                var sTrace = utr.SelectSingleNode(".//ns:Output", _nsm)?.SelectSingleNode(".//ns:ErrorInfo", _nsm)?.SelectSingleNode(".//ns:StackTrace", _nsm)?.InnerText ?? "";
+                var testName = utr.GetAttrVal("testName");
+                var ut = uts?.FirstOrDefault(node => (node.GetAttrVal("id") ?? "").Equals(testGuid));
+                var tm = ut?.GetNode("TestMethod");
+                var testFullName = (tm?.GetAttrVal("className") ?? "").Split(',')[0] + "." + testName;
+                var result = utr.GetAttrVal("outcome");
+                var output = utr.GetNode("Output")?.GetNode("StdOut")?.InnerText ?? "";
+                var msg = utr.GetNode("Output")?.GetNode("ErrorInfo")?.GetNode("Message")?.InnerText ?? "";
+                var sTrace = utr.GetNode("Output")?.GetNode("ErrorInfo")?.GetNode("StackTrace")?.InnerText ?? "";
                 var testRun = new TestRun
                 {
                     TestInfo = testInfo,

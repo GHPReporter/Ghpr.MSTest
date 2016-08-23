@@ -8,7 +8,6 @@ namespace Ghpr.MSTest
     public static class XmlExtensions
     {
         public const string Ns = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
-        private static XmlDocument _xml;
         private static XmlNamespaceManager _nsm;
         
         public static XmlDocument GetDoc(string path)
@@ -17,11 +16,11 @@ namespace Ghpr.MSTest
             {
                 throw new FileNotFoundException("Can't find .trx file!", path);
             }
-            _xml = new XmlDocument();
-            _xml.Load(path);
-            _nsm = new XmlNamespaceManager(_xml.NameTable);
+            var xml = new XmlDocument();
+            xml.Load(path);
+            _nsm = new XmlNamespaceManager(xml.NameTable);
             _nsm.AddNamespace("ns", Ns);
-            return _xml;
+            return xml;
         }
 
         public static XmlNodeList GetNodes(this XmlDocument xml, string nodeName)
