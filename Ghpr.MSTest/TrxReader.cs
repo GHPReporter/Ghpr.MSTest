@@ -38,7 +38,7 @@ namespace Ghpr.MSTest
         {
             var testRuns = new List<ITestRun>();
 
-            var utrs = _xml.SelectNodes(".//ns:UnitTestResult", _nsm);
+            var utrs = _xml.SelectNodes(".//ns:UnitTestResult", _nsm)?.Cast<XmlNode>().ToList();
 
             if (utrs == null)
             {
@@ -50,7 +50,7 @@ namespace Ghpr.MSTest
                 .SelectNodes(".//ns:UnitTest", _nsm)?
                 .Cast<XmlNode>().ToList();
 
-            foreach (XmlNode utr in utrs)
+            foreach (var utr in utrs)
             {
                 var start = DateTime.Parse(utr.Attributes?["startTime"].Value);
                 var finish = DateTime.Parse(utr.Attributes?["endTime"].Value);
