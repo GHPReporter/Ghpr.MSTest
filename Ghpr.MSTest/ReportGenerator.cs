@@ -6,7 +6,8 @@ namespace Ghpr.MSTest
     {
         public static void GenerateReport(string path)
         {
-            var reporter = new Reporter();
+            var settings = new Settings();
+            var reporter = new Reporter(settings);
             var reader = new TrxReader(path);
             reader.GenerateReport(reporter);
         }
