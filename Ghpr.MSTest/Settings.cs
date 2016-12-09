@@ -8,11 +8,11 @@ namespace Ghpr.MSTest
         public Settings()
         {
             OutputPath = ConfigurationManager.AppSettings["OutputPath"];
-            TakeScreenshotAfterFail = bool.Parse(ConfigurationManager.AppSettings["TakeScreenshotAfterFail"]);
+            TakeScreenshotAfterFail = false;
             Sprint = ConfigurationManager.AppSettings["Sprint"];
             RunName = ConfigurationManager.AppSettings["RunName"];
             RunGuid = ConfigurationManager.AppSettings["RunGuid"];
-            RealTimeGeneration = bool.Parse(ConfigurationManager.AppSettings["RealTimeGeneration"]);
+            RealTimeGeneration = false;
         }
 
         public string OutputPath { get; }
