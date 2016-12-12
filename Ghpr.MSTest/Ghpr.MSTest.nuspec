@@ -15,4 +15,8 @@
     <copyright>Copyright Evgeniy Kosjakov © 2016</copyright>
     <tags>.NET package HTML report reporting tool MSTest</tags>
   </metadata>
+  <files>
+    <file src="bin\Release\Ghpr.MSTest.exe" target="lib" />
+    <file src="bin\Release\Ghpr.MSTest.exe.config" target="lib" />
+  </files>
 </package>
