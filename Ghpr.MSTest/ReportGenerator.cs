@@ -4,12 +4,22 @@ namespace Ghpr.MSTest
 {
     public static class ReportGenerator
     {
-        public static void GenerateReport(string path)
+        private static readonly Settings Settings;
+
+        static ReportGenerator()
         {
-            var settings = new Settings();
-            var reporter = new Reporter(settings);
-            var reader = new TrxReader(path);
-            reader.GenerateReport(reporter);
+            Settings = new Settings();
+        }
+
+        public static void GenerateReport(string trxPath)
+        {
+            var reporter = new Reporter(Settings);
+            var reader = new TrxReader(trxPath);
+
+            var runGuid = reader.GetRunGuid();
+            var testRuns = reader.GetTestRuns();
+
+            reporter.GenerateFullReport(testRuns, runGuid);
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using Ghpr.Core;
 using Ghpr.Core.Common;
 using Ghpr.Core.Interfaces;
 
@@ -70,13 +69,6 @@ namespace Ghpr.MSTest
             }
 
             return testRuns;
-        }
-
-        public void GenerateReport(Reporter r)
-        {
-            var runGuid = GetRunGuid();
-            var testRuns = GetTestRuns();
-            r.GenerateFullReport(testRuns, runGuid);
         }
     }
 }
