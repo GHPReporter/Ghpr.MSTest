@@ -20,5 +20,6 @@
   </metadata>
   <files>
     <file src="bin\Release\Ghpr.MSTest.exe" target="lib" />
+	<file src="bin\Release\Ghpr.MSTest.Settings.json" target="content" />
   </files>
 </package>
