@@ -14,9 +14,11 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright Evgeniy Kosjakov © 2016</copyright>
     <tags>.NET package HTML report reporting tool MSTest</tags>
+	  <dependencies>
+		  <dependency id="Ghpr.Core" version="0.4.6.0" />
+	  </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\Ghpr.MSTest.exe" target="lib" />
-    <file src="bin\Release\Ghpr.MSTest.exe.config" target="lib" />
   </files>
 </package>
