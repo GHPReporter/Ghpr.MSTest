@@ -1,21 +1,20 @@
 ﻿using Ghpr.Core;
+using Ghpr.Core.Enums;
 
 namespace Ghpr.MSTest
 {
     public static class ReportGenerator
     {
-        private static readonly Settings Settings;
+        private static readonly Reporter reporter;
 
         static ReportGenerator()
         {
-            Settings = new Settings();
+            reporter = new Reporter(TestingFramework.MSTest);
         }
 
         public static void GenerateReport(string trxPath)
         {
-            var reporter = new Reporter(Settings);
             var reader = new TrxReader(trxPath);
-
             var runGuid = reader.GetRunGuid();
             var testRuns = reader.GetTestRuns();
 

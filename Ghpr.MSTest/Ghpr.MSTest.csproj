@@ -33,12 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ghpr.Core, Version=0.4.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ghpr.Core.0.4.0.5\lib\net452\Ghpr.Core.dll</HintPath>
+    <Reference Include="Ghpr.Core, Version=0.4.6.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ghpr.Core.0.4.6.7\lib\net452\Ghpr.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,13 +55,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportGenerator.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="TrxReader.cs" />
     <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Ghpr.Core.Settings.json" />
     <None Include="Ghpr.MSTest.nuspec" />
+    <None Include="Ghpr.MSTest.Settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
