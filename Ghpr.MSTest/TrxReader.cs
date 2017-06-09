@@ -37,7 +37,7 @@ namespace Ghpr.MSTest
             {
                 var start = DateTime.Parse(utr.GetAttrVal("startTime"));
                 var finish = DateTime.Parse(utr.GetAttrVal("endTime"));
-                var duration = utr.GetAttrVal("duration");
+                var duration = utr.GetAttrVal("duration") ?? "0:00";
                 var testGuid = utr.GetAttrVal("testId") ?? Guid.NewGuid().ToString();
                 var testInfo = new ItemInfo
                 {
