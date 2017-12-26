@@ -17,6 +17,5 @@
 # Ghpr.MSTest
 
 ## Usage:
- - Download the latest version of Ghpr.MSTest
- - Run .exe file with one argument - path to your *.trx file with test results
- - The report will be generated in the folder specified inside Ghpr.Core.dll.config file
+
+For usage details please see [Ghpr.Console repository](https://github.com/GHPReporter/Ghpr.Console#usage)
