@@ -12,10 +12,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Easy-to-use test run reporter for MSTest</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright Evgeniy Kosjakov © 2016 - 2018</copyright>
+    <copyright>Copyright Evgeniy Kosjakov © 2016-2018</copyright>
     <tags>.NET QA package HTML report reporting testing tool framework MSTest</tags>
 	  <dependencies>
-		  <dependency id="Ghpr.Core" version="0.8.0.2" />
+		  <dependency id="Ghpr.Core" version="0.8.1.0" />
 	  </dependencies>
   </metadata>
   <files>
