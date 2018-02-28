@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Ghpr.Core;
 using Ghpr.Core.Enums;
+using Ghpr.Core.Utils;
 using Ghpr.Core.Interfaces;
 
 namespace Ghpr.MSTest.Utils
@@ -19,7 +20,7 @@ namespace Ghpr.MSTest.Utils
             }
             catch (Exception ex)
             {
-                var log = new Core.Utils.Log(reporter.Settings.OutputPath);
+                var log = new Log(reporter.Settings.OutputPath);
                 log.Exception(ex, "Exception in CreateReportFromFile");
             }
         }
@@ -35,7 +36,7 @@ namespace Ghpr.MSTest.Utils
             catch (Exception ex)
             {
                 var reporter = new Reporter(TestingFramework.MSTest);
-                var log = new Core.Utils.Log(reporter.Settings.OutputPath);
+                var log = new Log(reporter.Settings.OutputPath);
                 log.Exception(ex, "Exception in GetTestRunsListFromFile");
                 return null;
             }
