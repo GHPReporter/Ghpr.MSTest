@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using Ghpr.Core.Common;
-using Ghpr.Core.Interfaces;
 
 namespace Ghpr.MSTest
 {
@@ -21,9 +20,9 @@ namespace Ghpr.MSTest
             return _xml.GetNode("TestRun").GetAttrVal("id");
         }
 
-        public List<ITestRun> GetTestRuns()
+        public List<KeyValuePair<TestRunDto,TestOutputDto>> GetTestRuns()
         {
-            var testRuns = new List<ITestRun>();
+            var testRuns = new List<KeyValuePair<TestRunDto, TestOutputDto>>();
             var utrs = _xml.GetNodesList("UnitTestResult");
             var uts = _xml.GetNode("TestDefinitions")?.GetNodesList("UnitTest");
 
@@ -37,9 +36,8 @@ namespace Ghpr.MSTest
             {
                 var start = DateTime.Parse(utr.GetAttrVal("startTime"));
                 var finish = DateTime.Parse(utr.GetAttrVal("endTime"));
-                var duration = utr.GetAttrVal("duration") ?? "0:00";
                 var testGuid = utr.GetAttrVal("testId") ?? Guid.NewGuid().ToString();
-                var testInfo = new ItemInfo
+                var testInfo = new ItemInfoDto
                 {
                     Start = start,
                     Finish = finish,
@@ -53,19 +51,32 @@ namespace Ghpr.MSTest
                 var output = utr.GetNode("Output")?.GetNode("StdOut")?.InnerText ?? "";
                 var msg = utr.GetNode("Output")?.GetNode("ErrorInfo")?.GetNode("Message")?.InnerText ?? "";
                 var sTrace = utr.GetNode("Output")?.GetNode("ErrorInfo")?.GetNode("StackTrace")?.InnerText ?? "";
-                var testRun = new TestRun
+
+                var testOutputInfo = new SimpleItemInfoDto
+                {
+                    Date = finish,
+                    ItemName = "Test output"
+                };
+
+                var testRun = new TestRunDto
                 {
                     TestInfo = testInfo,
                     Name = testName,
                     FullName = testFullName,
                     Result = result,
-                    Output = output,
+                    Output = testOutputInfo,
                     TestMessage = msg,
-                    TestStackTrace = sTrace,
-                    TestDuration = TimeSpan.Parse(duration).TotalSeconds
+                    TestStackTrace = sTrace
+                };
+
+                var testOutput = new TestOutputDto
+                {
+                    TestOutputInfo = testOutputInfo,
+                    Output = output,
+                    SuiteOutput = ""
                 };
                 
-                testRuns.Add(testRun);
+                testRuns.Add(new KeyValuePair<TestRunDto, TestOutputDto>(testRun, testOutput));
             }
 
             return testRuns;
