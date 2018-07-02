@@ -20,3 +20,7 @@
 ## Usage:
 
 For usage details please see [Ghpr.Console repository](https://github.com/GHPReporter/Ghpr.Console#usage)
+
+# Release notes
+
+You can find it [here](https://github.com/GHPReporter/Ghpr.Core/blob/master/RELEASE_NOTES.md) for all packages.
