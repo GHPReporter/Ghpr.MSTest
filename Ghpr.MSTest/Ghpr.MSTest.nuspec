@@ -11,11 +11,11 @@
     <iconUrl>https://github.com/GHPReporter/GHPReporter.github.io/blob/master/img/logo-small.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Easy-to-use test run reporter for MSTest</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>https://github.com/GHPReporter/Ghpr.Core/blob/master/RELEASE_NOTES.md</releaseNotes>
     <copyright>Copyright Evgeniy Kosjakov © 2016-2018</copyright>
     <tags>.NET QA package HTML report reporting testing tool framework MSTest</tags>
 	  <dependencies>
-      <dependency id="Ghpr.Core" version="0.9.0.3" />
+      <dependency id="Ghpr.Core" version="0.9.0.4" />
 	    <dependency id="Ghpr.LocalFileSystem" version="0.9.0.0" />
 	  </dependencies>
   </metadata>
