@@ -36,11 +36,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ghpr.Core, Version=0.9.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ghpr.Core.0.9.0.4\lib\net452\Ghpr.Core.dll</HintPath>
+    <Reference Include="Ghpr.Core, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ghpr.Core.0.9.1\lib\net452\Ghpr.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Ghpr.LocalFileSystem, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ghpr.LocalFileSystem.0.9.0\lib\net452\Ghpr.LocalFileSystem.dll</HintPath>
+    <Reference Include="Ghpr.LocalFileSystem, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ghpr.LocalFileSystem.0.9.1\lib\net452\Ghpr.LocalFileSystem.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
