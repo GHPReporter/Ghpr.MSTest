@@ -46,6 +46,7 @@ namespace Ghpr.MSTest
                 var testName = utr.GetAttrVal("testName");
                 var ut = uts?.FirstOrDefault(node => (node.GetAttrVal("id") ?? "").Equals(testGuid));
                 var tm = ut?.GetNode("TestMethod");
+                var testDesc = ut?.GetNode("Description")?.InnerText;
                 var testFullName = (tm?.GetAttrVal("className") ?? "").Split(',')[0] + "." + testName;
                 var result = utr.GetAttrVal("outcome");
                 var output = utr.GetNode("Output")?.GetNode("StdOut")?.InnerText ?? "";
@@ -62,6 +63,7 @@ namespace Ghpr.MSTest
                 {
                     TestInfo = testInfo,
                     Name = testName,
+                    Description = testDesc,
                     FullName = testFullName,
                     Result = result,
                     Output = testOutputInfo,
