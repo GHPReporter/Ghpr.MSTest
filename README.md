@@ -11,9 +11,9 @@
   <a href="https://github.com/GHPReporter/GHPReporter.github.io/">Site Repo</a>
 </p>
 
-[![Language](http://gh-toprated.info/Badges/LanguageBadge?user=GHPReporter&repo=Ghpr.MSTest&theme=light&fontWeight=bold)](https://github.com/GHPReporter/Ghpr.MSTest)
 [![Build status](https://ci.appveyor.com/api/projects/status/0surlhjtkckdiw18?svg=true)](https://ci.appveyor.com/project/elv1s42/ghpr-mstest)
 [![NuGet Version](https://img.shields.io/nuget/v/Ghpr.MSTest.svg)](https://www.nuget.org/packages/Ghpr.MSTest)
+[![CodeFactor](https://www.codefactor.io/repository/github/ghpreporter/ghpr.mstest/badge)](https://www.codefactor.io/repository/github/ghpreporter/ghpr.mstest)
 
 # Ghpr.MSTest
 
