@@ -13,6 +13,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/0surlhjtkckdiw18?svg=true)](https://ci.appveyor.com/project/elv1s42/ghpr-mstest)
 [![NuGet Version](https://img.shields.io/nuget/v/Ghpr.MSTest.svg)](https://www.nuget.org/packages/Ghpr.MSTest)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ce591a041dd418484acbf229d95d359)](https://www.codacy.com/app/42_/Ghpr.MSTest?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GHPReporter/Ghpr.MSTest&amp;utm_campaign=Badge_Grade)
 [![CodeFactor](https://www.codefactor.io/repository/github/ghpreporter/ghpr.mstest/badge)](https://www.codefactor.io/repository/github/ghpreporter/ghpr.mstest)
 
 # Ghpr.MSTest
