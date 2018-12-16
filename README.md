@@ -15,6 +15,7 @@
 [![NuGet Version](https://img.shields.io/nuget/v/Ghpr.MSTest.svg)](https://www.nuget.org/packages/Ghpr.MSTest)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ce591a041dd418484acbf229d95d359)](https://www.codacy.com/app/42_/Ghpr.MSTest?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GHPReporter/Ghpr.MSTest&amp;utm_campaign=Badge_Grade)
 [![CodeFactor](https://www.codefactor.io/repository/github/ghpreporter/ghpr.mstest/badge)](https://www.codefactor.io/repository/github/ghpreporter/ghpr.mstest)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGHPReporter%2FGhpr.MSTest.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FGHPReporter%2FGhpr.MSTest?ref=badge_shield)
 
 # Ghpr.MSTest
 
@@ -25,3 +26,7 @@ For usage details please see [Ghpr.Console repository](https://github.com/GHPRep
 # Release notes
 
 You can find it [here](https://github.com/GHPReporter/Ghpr.Core/blob/master/RELEASE_NOTES.md) for all packages.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGHPReporter%2FGhpr.MSTest.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGHPReporter%2FGhpr.MSTest?ref=badge_large)
